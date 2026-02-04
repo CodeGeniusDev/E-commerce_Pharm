@@ -89,7 +89,7 @@ Products are stored in `src/data/products.ts`. Each product has:
 - **Tailwind CSS** - Styling
 - **React Router** - Navigation
 - **Zod** - Form validation
-- **Lovable Cloud** - File storage for prescriptions
+- **Cloud Storage** - File storage for prescriptions
 
 ## Pages
 
@@ -101,7 +101,7 @@ Products are stored in `src/data/products.ts`. Each product has:
 
 ## Deploying
 
-Simply open Lovable and click on Share -> Publish.
+Deploy using your preferred hosting service (Vercel, Netlify, etc.)
 
 ## License
 
