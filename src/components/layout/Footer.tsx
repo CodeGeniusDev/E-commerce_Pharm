@@ -29,6 +29,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/about" className="text-primary-foreground/80 hover:text-white transition-colors">
+                  About
+                </Link>
+              </li>
+              <li>
                 <Link to="/products" className="text-primary-foreground/80 hover:text-white transition-colors">
                   Products
                 </Link>
@@ -36,6 +41,11 @@ const Footer = () => {
               <li>
                 <Link to="/cart" className="text-primary-foreground/80 hover:text-white transition-colors">
                   Cart
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="text-primary-foreground/80 hover:text-white transition-colors">
+                  Contact
                 </Link>
               </li>
             </ul>
@@ -47,7 +57,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center gap-3 text-primary-foreground/80">
                 <Phone size={18} />
-                <span>+92 300 1234567</span>
+                <span>+92 333 1304004</span>
               </li>
               <li className="flex items-center gap-3 text-primary-foreground/80">
                 <Mail size={18} />
