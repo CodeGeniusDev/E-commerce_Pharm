@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Rehmat Pharma - GlassMorphism Design System
+   Primary: #0A4D68 (Deep Teal) - Trust & Professionalism
+   Secondary: #2ECC71 (Emerald) - Health & Growth  
+   Accent: #F39C12 (Amber) - Warmth & Attention
+*/
+
+/* @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap'); */
+
+@layer base {
+  :root {
+    /* Core Brand Colors */
+    --background: 195 20% 97%;
+    --foreground: 197 82% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 197 82% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 197 82% 15%;
+
+    /* Primary - Deep Teal #0A4D68 */
+    --primary: 197 82% 22%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Emerald Green #2ECC71 */
+    --secondary: 145 63% 49%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Muted for subtle backgrounds */
+    --muted: 195 25% 93%;
+    --muted-foreground: 197 30% 40%;
+
+    /* Accent - Amber #F39C12 */
+    --accent: 37 90% 51%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 197 20% 88%;
+    --input: 197 20% 88%;
+    --ring: 197 82% 22%;
+
+    --radius: 1rem;
+
+    /* Glass Effect Variables */
+    --glass-bg: 0 0% 100% / 0.7;
+    --glass-border: 0 0% 100% / 0.3;
+    --glass-shadow: 197 82% 22% / 0.08;
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 197 30% 26%;
+    --sidebar-primary: 197 82% 22%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 195 25% 95%;
+    --sidebar-accent-foreground: 197 82% 22%;
+    --sidebar-border: 197 20% 91%;
+    --sidebar-ring: 197 82% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Plus Jakarta Sans", sans-serif;
+  }
+}
+
+@layer components {
+  /* GlassMorphism Card */
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-xl border border-white/30 shadow-lg;
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300 hover:bg-white/80 hover:shadow-xl;
+  }
+
+  /* Glass Button Variants */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground font-semibold px-6 py-3 rounded-xl 
+           transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 
+           focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground font-semibold px-6 py-3 rounded-xl 
+           transition-all duration-300 hover:shadow-lg hover:shadow-secondary/25 
+           focus:outline-none focus:ring-2 focus:ring-secondary/50 focus:ring-offset-2;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-accent-foreground font-semibold px-6 py-3 rounded-xl 
+           transition-all duration-300 hover:shadow-lg hover:shadow-accent/25 
+           focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2;
+  }
+
+  .btn-glass {
+    @apply bg-white/20 backdrop-blur-md text-foreground font-semibold px-6 py-3 rounded-xl 
+           border border-white/30 transition-all duration-300 hover:bg-white/40 
+           focus:outline-none focus:ring-2 focus:ring-white/50;
+  }
+
+  /* Trust Badge Styling */
+  .trust-badge {
+    @apply glass-card px-4 py-3 rounded-xl flex items-center gap-2 text-sm font-medium text-foreground;
+  }
+
+  /* Section containers */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Form inputs with glass effect */
+  .glass-input {
+    @apply w-full px-4 py-3 rounded-xl bg-white/60 backdrop-blur-sm border border-border 
+           focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary 
+           transition-all duration-200 placeholder:text-muted-foreground;
+  }
+}
