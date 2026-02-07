@@ -49,20 +49,53 @@ const ContactUs = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
-    });
-    setIsSubmitting(false);
-    
-    alert("Thank you for your message! We'll get back to you soon.");
+    // Check if we're in development mode
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      // Simulate form submission for local development
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+      setIsSubmitting(false);
+      
+      alert("Form submitted successfully!");
+    } else {
+      // For Netlify, let the form submit normally
+      // Don't prevent default behavior in production
+      const form = e.target as HTMLFormElement;
+      
+      // Create FormData and submit via fetch for better control
+      const formData = new FormData(form);
+      
+      try {
+        await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData as any).toString()
+        });
+        
+        // Reset form on success
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+        setIsSubmitting(false);
+        
+        alert("Thank you for your message! We'll get back to you soon.");
+      } catch (error) {
+        setIsSubmitting(false);
+        alert("Submission failed. Please try again.");
+      }
+    }
   };
 
   return (
@@ -104,11 +137,12 @@ const ContactUs = () => {
                 Send us a Message
               </h3>
               
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6" name="contact" data-netlify="true" method="POST">
+                <input type="hidden" name="form-name" value="contact" />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                      Your Name *
+                      Your Name <span className="text-destructive">*</span>
                     </label>
                     <div className="relative">
                       <User size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
@@ -127,7 +161,7 @@ const ContactUs = () => {
                   
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                      Email Address *
+                      Email Address <span className="text-destructive">*</span>
                     </label>
                     <div className="relative">
                       <Mail size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
@@ -147,7 +181,7 @@ const ContactUs = () => {
 
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                    Phone Number
+                    Phone Number <span className="text-destructive">*</span>
                   </label>
                   <div className="relative">
                     <Phone size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
@@ -165,7 +199,7 @@ const ContactUs = () => {
 
                 <div>
                   <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
-                    Subject *
+                    Subject <span className="text-destructive">*</span>
                   </label>
                   <select
                     id="subject"
@@ -187,7 +221,7 @@ const ContactUs = () => {
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                    Message *
+                    Message <span className="text-destructive">*</span>
                   </label>
                   <textarea
                     id="message"
